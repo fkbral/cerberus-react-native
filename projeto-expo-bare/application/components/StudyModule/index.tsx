@@ -1,30 +1,216 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, FlatList, ScrollView } from "react-native";
-import uuid from 'react-native-uuid'
+import React, { useCallback, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TextInput,
+  TouchableNativeFeedback,
+  ScrollView,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
+import uuid from "react-native-uuid";
+
+type Topic = {
+  id: string;
+  name: string;
+};
 
 export const StudyModule = () => {
-  const [topics, setTopics] = useState([
+  const [topics, setTopics] = useState<Topic[]>([
     {
-      id: "d5a0d952-126e-4cf0-add6-cb62b1e6468e",
+      id: uuid.v4() as string,
       name: "Loops",
     },
     {
-      id: "611a4851-7f89-45a8-be25-7b6bc7a66cc6",
+      id: uuid.v4() as string,
       name: "Arrays",
     },
     {
-      id: "d14b1466-fdd2-4acd-8ae0-6e1cb1ee059a",
+      id: uuid.v4() as string,
       name: "Objetos",
     },
-  ])
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+    {
+      id: uuid.v4() as string,
+      name: "Objetos",
+    },
+  ]);
+
+  const [topicInput, setTopicInput] = useState("");
+
+  function handleAddTopic() {
+    if (!topicInput) {
+      return;
+    }
+
+    setTopics((previousTopics) => [
+      ...previousTopics,
+      { id: uuid.v4() as string, name: topicInput },
+    ]);
+
+    // setTopics([...topics, { id: uuid.v4() as string, name: topicInput }]);
+    setTopicInput("");
+  }
+
+  // const handleAddTopic = useCallback(() => {
+  //   if (!topicInput) {
+  //     return;
+  //   }
+
+  //   setTopics((previousTopics) => [
+  //     ...previousTopics,
+  //     { id: uuid.v4() as string, name: topicInput },
+  //   ]);
+
+  //   // setTopics([...topics, { id: uuid.v4() as string, name: topicInput }]);
+  //   setTopicInput("");
+  // }, [setTopics, setTopicInput, topicInput, topics]);
 
   return (
     <View style={styles.container}>
+      <Text>Entre com um novo Tópico</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Nome do novo Tópico"
+        onChangeText={(text) => setTopicInput(text)}
+        onSubmitEditing={handleAddTopic}
+        value={topicInput}
+      />
+
+      {Platform.OS === "ios" ? (
+        <TouchableOpacity
+          onPress={handleAddTopic}
+          style={{ backgroundColor: "teal" }}
+        >
+          <View style={{ backgroundColor: "teal" }}>
+            <Text style={styles.buttonText}>Adicionar</Text>
+          </View>
+        </TouchableOpacity>
+      ) : (
+        <TouchableNativeFeedback
+          onPress={handleAddTopic}
+          style={{ backgroundColor: "teal" }}
+        >
+          <View style={{ backgroundColor: "teal" }}>
+            <Text style={styles.buttonText}>Adicionar</Text>
+          </View>
+        </TouchableNativeFeedback>
+      )}
+
       <Text style={styles.module}>Lógica de Programação</Text>
 
-      {/* <View>
-        {topics.map(topic => <Text key={topic.id}>{topic.name}</Text>)}
-      </View> */}
+      <ScrollView horizontal style={{ height: 32, flexDirection: "row" }}>
+        {topics.map((topic) => (
+          <Text style={{ marginRight: 6 }} key={topic.id}>
+            {topic.name}
+          </Text>
+        ))}
+      </ScrollView>
 
       <FlatList
         data={topics}
@@ -39,8 +225,8 @@ export const StudyModule = () => {
         <Text>Teste</Text>
       </View> */}
     </View>
-  )
-}
+  );
+};
 
 export const styles = StyleSheet.create({
   container: {
@@ -58,14 +244,23 @@ export const styles = StyleSheet.create({
     marginHorizontal: "auto",
     width: 100,
   },
+  input: {
+    backgroundColor: "#dedede",
+    height: 36,
+    width: 240,
+  },
   module: {
     fontSize: 22,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
   },
   topics: {
     marginLeft: 6,
   },
   topicsText: {
-    color: 'teal',
+    color: "teal",
     fontSize: 18,
   },
 });

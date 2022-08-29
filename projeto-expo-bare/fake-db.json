@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "id": "bc55b439-a243-4897-9ed0-adfdc6e81239",
+      "name": "calça jeans",
+      "value": 140
+    },
+    {
+      "id": "1b0a4e30-9375-4fec-b355-7d524d0e8f42",
+      "name": "jaqueta",
+      "value": 250
+    },
+    {
+      "id": "4232ebc3-d5c6-4f79-b150-3f4f515973f6",
+      "name": "par de meias curtas",
+      "value": 10
+    }
+  ]
+}
