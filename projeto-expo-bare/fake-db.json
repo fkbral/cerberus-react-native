@@ -1,19 +1,25 @@
 {
-  "products": [
-    {
-      "id": "bc55b439-a243-4897-9ed0-adfdc6e81239",
-      "name": "calça jeans",
-      "value": 140
-    },
-    {
-      "id": "1b0a4e30-9375-4fec-b355-7d524d0e8f42",
-      "name": "jaqueta",
-      "value": 250
-    },
-    {
-      "id": "4232ebc3-d5c6-4f79-b150-3f4f515973f6",
-      "name": "par de meias curtas",
-      "value": 10
-    }
-  ]
+    "products": [
+        {
+            "id": "bc55b439-a243-4897-9ed0-adfdc6e81239",
+            "name": "calça jeans",
+            "value": 140,
+            "imageUrl": "https://images.unsplash.com/photo-1602293589930-45aad59ba3ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8amVhbnN8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
+            "isDiscounted": false
+        },
+        {
+            "id": "1b0a4e30-9375-4fec-b355-7d524d0e8f42",
+            "name": "jaqueta",
+            "value": 250,
+            "imageUrl": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8amFja2V0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
+            "isDiscounted": true
+        },
+        {
+            "id": "4232ebc3-d5c6-4f79-b150-3f4f515973f6",
+            "name": "par de meias curtas",
+            "value": 10,
+            "imageUrl": "https://images.unsplash.com/photo-1615486364462-ef6363adbc18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c29ja3N8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
+            "isDiscounted": false
+        }
+    ]
 }

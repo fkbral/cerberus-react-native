@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -18,140 +19,39 @@ type Topic = {
 };
 
 export const StudyModule = () => {
-  const [topics, setTopics] = useState<Topic[]>([
-    {
-      id: uuid.v4() as string,
-      name: "Loops",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Arrays",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-    {
-      id: uuid.v4() as string,
-      name: "Objetos",
-    },
-  ]);
+  const [topics, setTopics] = useState<Topic[]>([]);
 
   const [topicInput, setTopicInput] = useState("");
 
-  function handleAddTopic() {
+  useEffect(() => {
+    async function getStoredTopics() {
+      const storedTopicsJSONString = await AsyncStorage.getItem(
+        "@AdaApp/studyTopics"
+      );
+      setTopics(JSON.parse(storedTopicsJSONString));
+    }
+
+    getStoredTopics();
+  }, []);
+
+  async function handleAddTopic() {
     if (!topicInput) {
       return;
     }
 
-    setTopics((previousTopics) => [
-      ...previousTopics,
-      { id: uuid.v4() as string, name: topicInput },
-    ]);
+    setTopics((previousTopics) => {
+      const topicsToSave = [
+        ...previousTopics,
+        { id: uuid.v4() as string, name: topicInput },
+      ];
+
+      return topicsToSave;
+    });
+
+    await AsyncStorage.setItem(
+      "@AdaApp/studyTopics",
+      JSON.stringify([...topics, { id: uuid.v4() as string, name: topicInput }])
+    );
 
     // setTopics([...topics, { id: uuid.v4() as string, name: topicInput }]);
     setTopicInput("");

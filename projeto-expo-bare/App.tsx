@@ -9,6 +9,7 @@ export default function App() {
     <SafeAreaProvider>
       <StatusBar style="dark" />
       {/* <GithubProfile /> */}
+      {/* <StudyModule /> */}
       <ProductList />
     </SafeAreaProvider>
   );
