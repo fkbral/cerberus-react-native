@@ -66,13 +66,13 @@ export const ProductList = () => {
   }
 
   return (
-    <SafeAreaView style={{ padding: 5 }}>
+    <SafeAreaView style={{ padding: 5, alignItems: "center" }}>
       <Image
         source={GoogleLogo}
         style={{ height: 120, width: 300 }}
         resizeMode="contain"
       />
-      <Text style={styles.text}>Lista de produtos</Text>
+      <Text style={styles.text}>Nossas peças</Text>
 
       {/* <Text>{PRODUCT_API_URL}</Text> */}
 
@@ -80,7 +80,15 @@ export const ProductList = () => {
         <ActivityIndicator color="steelblue" size={42} animating />
       ) : (
         <FlatList
-          style={{ height: 500, flex: 0 }}
+          style={{
+            height: 500,
+            width: windowWidth,
+            marginTop: 15,
+          }}
+          contentContainerStyle={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
           data={products}
           renderItem={({ item }) => (
             <View>
@@ -93,9 +101,12 @@ export const ProductList = () => {
                 source={{ uri: item.imageUrl }}
                 style={{
                   height: 200,
-                  width: windowWidth - 100,
-                  // width: Dimensions.get("window").width - 100,
+                  width: windowWidth / 2,
+                  borderRadius: 8,
+                  overflow: "hidden",
+                  // width: Dimensions.get("window").width/2,
                 }}
+                resizeMode="cover"
               >
                 {item.isDiscounted && (
                   <Text style={{ fontWeight: "900", color: "lightgreen" }}>
@@ -122,14 +133,32 @@ export const ProductList = () => {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "position"}
       >
-        <TextInput placeholder="Insira comentários sobre sua experiência em nossa loja"></TextInput>
+        <View style={{ backgroundColor: "#efefef" }}>
+          <TextInput
+            placeholder="Insira comentários sobre sua experiência em nossa loja"
+            style={{
+              backgroundColor: "#efefef",
+              padding: 10,
+              marginBottom: 10,
+            }}
+          ></TextInput>
 
-        <TouchableOpacity
-          style={{ backgroundColor: "lightgreen" }}
-          onPress={handleShowPurchaseAlert}
-        >
-          <Text>Finalizar compra</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              alignSelf: "center",
+              backgroundColor: "lightgreen",
+              borderRadius: 8,
+              width: 200,
+              margin: "auto",
+              height: 42,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onPress={handleShowPurchaseAlert}
+          >
+            <Text style={{ color: "white" }}>Finalizar compra</Text>
+          </TouchableOpacity>
+        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -137,6 +166,6 @@ export const ProductList = () => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 22,
+    fontSize: 18,
   },
 });
