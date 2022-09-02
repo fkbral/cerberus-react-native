@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 
 const nome = "fulano";
 const texto = "olá " + nome;
