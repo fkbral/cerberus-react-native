@@ -11,7 +11,6 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
-  BackHandler,
   Dimensions,
   PixelRatio,
   useWindowDimensions,
@@ -26,19 +25,6 @@ import GoogleLogo from "../../../assets/images/google-logo.png";
 export const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const { height: windowHeight, width: windowWidth } = useWindowDimensions();
-
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", () => {
-      Alert.alert("Informação", "Você já está na tela inicial");
-      return true;
-    });
-
-    return () => {
-      BackHandler.removeEventListener("hardwareBackPress", () => {
-        return false;
-      });
-    };
-  }, []);
 
   useEffect(() => {
     async function getProducts() {

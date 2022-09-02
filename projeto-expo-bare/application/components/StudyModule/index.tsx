@@ -23,12 +23,17 @@ export const StudyModule = () => {
 
   const [topicInput, setTopicInput] = useState("");
 
+  const numero = 0;
+
   useEffect(() => {
     async function getStoredTopics() {
       const storedTopicsJSONString = await AsyncStorage.getItem(
         "@AdaApp/studyTopics"
       );
-      setTopics(JSON.parse(storedTopicsJSONString));
+      setTopics(JSON.parse(storedTopicsJSONString) ?? []);
+
+      // (numero || numero === 0) ? numero : 10
+      // numero ?? 10
     }
 
     getStoredTopics();
